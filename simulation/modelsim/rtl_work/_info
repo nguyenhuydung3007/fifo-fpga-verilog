@@ -1,0 +1,59 @@
+m255
+K4
+z2
+!s11f vlog 2020.1 2020.02, Feb 28 2020
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dD:/1 - FPGA/1 - Project_Quatus/9 - FIFO/simulation/modelsim
+vfifo
+Z1 !s110 1770271838
+!i10b 1
+!s100 >9k4f8c8h<:RGk3:BHDm90
+Z2 !s11b Dg1SIo80bB@j0V0VzS_@n1
+IN83>=ZK3?c3GYl0z7[E:A2
+Z3 VDg1SIo80bB@j0V0VzS_@n1
+R0
+w1769372261
+8D:/1 - FPGA/1 - Project_Quatus/9 - FIFO/fifo.v
+FD:/1 - FPGA/1 - Project_Quatus/9 - FIFO/fifo.v
+!i122 0
+L0 7 71
+Z4 OV;L;2020.1;71
+r1
+!s85 0
+31
+Z5 !s108 1770271838.000000
+!s107 D:/1 - FPGA/1 - Project_Quatus/9 - FIFO/fifo.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/1 - FPGA/1 - Project_Quatus/9 - FIFO|D:/1 - FPGA/1 - Project_Quatus/9 - FIFO/fifo.v|
+!i113 1
+Z6 o-vlog01compat -work work
+Z7 !s92 -vlog01compat -work work {+incdir+D:/1 - FPGA/1 - Project_Quatus/9 - FIFO}
+Z8 tCvgOpt 0
+vfifo_tb
+R1
+!i10b 1
+!s100 @VfB2L82oH]c1Va=:B8ga0
+R2
+Ie[Haaz:4a1XENF`z=^;cK1
+R3
+R0
+w1769372422
+8D:/1 - FPGA/1 - Project_Quatus/9 - FIFO/fifo_tb.v
+FD:/1 - FPGA/1 - Project_Quatus/9 - FIFO/fifo_tb.v
+!i122 1
+L0 3 78
+R4
+r1
+!s85 0
+31
+R5
+!s107 D:/1 - FPGA/1 - Project_Quatus/9 - FIFO/fifo_tb.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/1 - FPGA/1 - Project_Quatus/9 - FIFO|D:/1 - FPGA/1 - Project_Quatus/9 - FIFO/fifo_tb.v|
+!i113 1
+R6
+R7
+R8

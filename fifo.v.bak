@@ -1,0 +1,60 @@
+module fifo #(
+    parameter W = 8, L = 8
+) (
+    input clk,
+    input reset,
+    input wr_en,
+    input rd_en,
+    input [W - 1 : 0] wr_data,
+    output [W - 1 : 0] rd_data,
+    output empty,
+    output full
+);
+    
+    reg [W - 1 : 0] memory [0 : L - 1];
+    reg [$clog2(L):0] counter;
+    reg [$clog2(L)-1:0] wr_ptr;
+    reg [$clog2(L)-1:0] rd_ptr;
+    reg [W - 1:0] data_temp;
+    reg empty_reg;
+    reg full_reg;
+
+    assign rd_data = data_temp;
+    assign empty = empty_reg;
+    assign full = full_reg;
+
+    always @(posedge clk or negedge reset) begin
+        if (~reset) begin
+            wr_ptr <= 0;
+            rd_ptr <= 0;
+            counter <= 0;
+            data_temp <= 0;
+            full_reg <= 0;
+            empty_reg <= 1;
+        end else begin
+            // Ghi dữ liệu
+            if (wr_en & ~full_reg) begin
+                memory[wr_ptr] <= wr_data;
+                wr_ptr <= (wr_ptr == L-1) ? 0 : wr_ptr + 1;
+            end
+
+            // Đọc dữ liệu
+            if (rd_en & ~empty_reg) begin
+                data_temp <= memory[rd_ptr];
+                rd_ptr <= (rd_ptr == L-1) ? 0 : rd_ptr + 1;
+            end
+
+            // Cập nhật counter
+            case ({wr_en & ~full_reg, rd_en & ~empty_reg})
+                2'b10: counter = counter + 1; // Chỉ ghi
+                2'b01: counter = counter - 1; // Chỉ đọc
+                2'b11: counter = counter;     // Ghi & đọc đồng thời
+                2'b00: counter = counter;     // Không ghi & đọc
+            endcase
+
+            // Cập nhật trạng thái ngay lập tức
+            empty_reg = (counter == 0);
+            full_reg  = (counter == L);
+        end
+    end
+endmodule

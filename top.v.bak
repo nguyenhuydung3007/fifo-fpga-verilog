@@ -1,0 +1,39 @@
+module top #(
+    parameter W = 8,
+    parameter L = 8
+) (
+    input CLOCK_50,
+    input KEY0, //wr_en
+    input KEY1, //rd_en
+    input [8:0] SW, //wr_data, reset
+    output [9:0] LEDR   //rd_data, empty, full
+);
+
+    wire reset;
+    wire wr_en;
+    wire rd_en;
+    wire [W - 1:0] wr_data;
+    wire [W - 1:0] rd_data;
+    wire empty;
+    wire full;
+
+    fifo #(.W(W), .L(L)) map (
+        .clk(CLOCK_50),
+        .reset(reset),
+        .wr_en(wr_en),
+        .rd_en(rd_en),
+        .wr_data(wr_data),
+        .rd_data(rd_data),
+        .empty(empty),
+        .full(full)
+    );
+
+    assign reset = ~SW[8];
+    assign wr_en = ~KEY0;
+    assign rd_en = ~KEY1;
+    assign wr_data = SW [7:0];
+    assign LEDR [7:0] = rd_data;
+    assign LEDR[8] = empty;
+    assign LEDR[9] = full;
+    
+endmodule
